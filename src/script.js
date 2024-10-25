@@ -14,6 +14,32 @@ const sizes = {
     height: window.innerHeight
 }
 
+window.addEventListener('resize', () => 
+{
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight    
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix()
+
+    // Update renderer 
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+})
+
+window.addEventListener('dblclick', () => 
+{
+    if(!document.fullscreenElement) {
+        canvas.requestFullscreen()
+    } else {
+        document.exitFullscreen()
+    }
+
+})
+
 // Cursor
 const cursor = {
     x: 0,
@@ -29,12 +55,26 @@ window.addEventListener('mousemove', (event) =>
 // Scene
 const scene = new THREE.Scene()
 
-// Object
-const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1, 5, 5, 5),
-    new THREE.MeshBasicMaterial({ color: 0xff0000 })
-)
-scene.add(mesh)
+
+const geometry = new THREE.BufferGeometry()
+
+const count = 250
+const positionsArray = new Float32Array(count * 3 * 3)
+
+for(let i = 0; i < count * 3 * 3; i++) {
+    positionsArray[i] = ( Math.random() -0.5) * 14 
+}
+
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+geometry.setAttribute('position', positionsAttribute)
+
+
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
+const mesh = new THREE.Mesh(geometry, material);
+
+scene.add(mesh);
+
+
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
