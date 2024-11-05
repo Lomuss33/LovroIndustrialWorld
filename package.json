@@ -8,11 +8,12 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^5.3.3",
+    "vite": "^5.4.10",
     "vite-plugin-restart": "^0.4.1"
   },
   "dependencies": {
     "gsap": "3.12",
-    "three": "^0.166.1"
+    "lil-gui": "^0.20.0",
+    "three": "^0.170.0"
   }
 }
