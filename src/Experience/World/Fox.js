@@ -14,11 +14,11 @@ export default class Fox
         // Debug
         if(this.debug.active)
         {
-            this.debugFolder = this.debug.ui.addFolder('fox')
+            this.debugFolder = this.debug.ui.addFolder('warehouse1')
         }
 
         // Resource
-        this.resource = this.resources.items.foxModel
+        this.resource = this.resources.items.warehouse1
 
         this.setModel()
         this.setAnimation()
@@ -53,7 +53,7 @@ export default class Fox
         this.animation.actions.walking = this.animation.mixer.clipAction(this.resource.animations[1])
         this.animation.actions.running = this.animation.mixer.clipAction(this.resource.animations[2])
         
-        this.animation.actions.current = this.animation.actions.running
+        this.animation.actions.current = this.animation.actions.idle
         this.animation.actions.current.play()
 
         // Play the action

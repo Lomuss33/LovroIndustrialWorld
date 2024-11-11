@@ -1,5 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import EventEmitter from './EventEmitter.js'
 
 export default class Resources extends EventEmitter
@@ -24,6 +26,8 @@ export default class Resources extends EventEmitter
         this.loaders.gltfLoader = new GLTFLoader()
         this.loaders.textureLoader = new THREE.TextureLoader()
         this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader()
+        this.loaders.exrLoader = new EXRLoader();
+        this.loaders.fbxLoader = new FBXLoader();
     }
 
     startLoading()
@@ -60,6 +64,31 @@ export default class Resources extends EventEmitter
                         this.sourceLoaded(source, file)
                     }
                 )
+            }
+            else if(source.type === 'exrLoader')
+            {
+                this.loaders.exrLoader.load(
+                    source.path,
+                    (file) =>
+                    {
+                        this.sourceLoaded(source, file)
+                    }
+                )
+            }
+            else if(source.type === 'fbxLoader')
+            {
+                this.loaders.fbxLoader.load(
+                    source.path,
+                    (file) => {
+                        console.log('FBX loaded:', file);  // Add this to debug
+                        this.sourceLoaded(source, file);
+                    },
+                    undefined, // Optional progress callback
+                    (error) => { // Optional error callback
+                        console.error('Error loading FBX:', error);
+                    }
+                );
+                
             }
         }
     }

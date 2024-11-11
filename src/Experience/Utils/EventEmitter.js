@@ -1,3 +1,4 @@
+// THREE JS Journey "EventEmitter" Bruno's code
 export default class EventEmitter
 {
     constructor()
