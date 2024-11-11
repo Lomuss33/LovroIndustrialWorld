@@ -14,11 +14,11 @@ export default class Fox
         // Debug
         if(this.debug.active)
         {
-            this.debugFolder = this.debug.ui.addFolder('warehouse1')
+            this.debugFolder = this.debug.ui.addFolder('fox')
         }
 
         // Resource
-        this.resource = this.resources.items.warehouse1
+        this.resource = this.resources.items.foxModel
 
         this.setModel()
         this.setAnimation()
