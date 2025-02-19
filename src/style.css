@@ -17,3 +17,38 @@ body
     left: 0;
     outline: none;
 }
+
+.start-screen {
+    position: absolute;
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    right: 20px; /* Distance from the right */
+    bottom: 20px; /* Distance from the bottom */
+    width: auto; /* Auto width to fit within the set margins */
+    height: auto;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(135deg, #f2e427 25%, #000000 25%, #000000 50%, #f2e427 50%, #f2e427 75%, #000000 75%, #000000 100%);
+    background-size: 113.14px 113.14px; /* Adjust size as needed */
+    background-color: transparent;
+    z-index: 0; /* Keep this layer behind other content */
+    pointer-events: none; /* Allow clicks to pass through to other elements */
+}
+
+
+

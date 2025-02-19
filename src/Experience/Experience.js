@@ -26,6 +26,8 @@ export default class Experience
         // Global access
         window.experience = this
 
+        console.log("Experience Initialized"); // Debugging
+
         // Options
         this.canvas = _canvas
 
